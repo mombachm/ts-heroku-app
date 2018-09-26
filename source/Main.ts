@@ -26,8 +26,7 @@ class Main {
     this.app.get('/', (req: any, res: any) => {
 
       // ejs render automatically looks in the views folder
-      console.log(this.arguments);
-      res.render('index', {test: "Var Test."});
+      res.render('index', {test: this.arguments});
     });
 
     this.app.listen(port, () => {

@@ -18,8 +18,7 @@ var Main = /** @class */ (function () {
         // set the home page route
         this.app.get('/', function (req, res) {
             // ejs render automatically looks in the views folder
-            console.log(_this.arguments);
-            res.render('index', { test: "Var Test." });
+            res.render('index', { test: _this.arguments });
         });
         this.app.listen(port, function () {
             console.log('Our app is running on http://localhost:' + port);
