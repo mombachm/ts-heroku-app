@@ -2,12 +2,27 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Main = /** @class */ (function () {
     function Main() {
-        this.initArguments();
+        this.express = require('express');
+        this.initApp();
         console.log(this.arguments);
     }
-    Main.prototype.initArguments = function () {
-        this.arguments = process.argv;
-        this.arguments.splice(0, 2);
+    Main.prototype.initApp = function () {
+        this.app = this.express();
+        // set the port of our application
+        // process.env.PORT lets the port be set by Heroku
+        var port = process.env.PORT || 8080;
+        // set the view engine to ejs
+        this.app.set('view engine', 'ejs');
+        // make express look in the public directory for assets (css/js/img)
+        this.app.use(this.express.static(__dirname + '/public'));
+        // set the home page route
+        this.app.get('/', function (req, res) {
+            // ejs render automatically looks in the views folder
+            res.render('index', { test: "Var Test." });
+        });
+        this.app.listen(port, function () {
+            console.log('Our app is running on http://localhost:' + port);
+        });
     };
     return Main;
 }());
