@@ -4,9 +4,9 @@ var Main = /** @class */ (function () {
     function Main() {
         this.express = require('express');
         this.initApp();
-        console.log(this.arguments);
     }
     Main.prototype.initApp = function () {
+        var _this = this;
         this.app = this.express();
         // set the port of our application
         // process.env.PORT lets the port be set by Heroku
@@ -18,6 +18,7 @@ var Main = /** @class */ (function () {
         // set the home page route
         this.app.get('/', function (req, res) {
             // ejs render automatically looks in the views folder
+            console.log(_this.arguments);
             res.render('index', { test: "Var Test." });
         });
         this.app.listen(port, function () {

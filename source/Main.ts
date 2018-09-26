@@ -7,7 +7,6 @@ class Main {
 
   constructor() {
     this.initApp();
-    console.log(this.arguments);
   }
 
   private initApp() {
@@ -24,9 +23,10 @@ class Main {
     this.app.use(this.express.static(__dirname + '/public'));
 
     // set the home page route
-    this.app.get('/', function(req: any, res: any) {
+    this.app.get('/', (req: any, res: any) => {
 
       // ejs render automatically looks in the views folder
+      console.log(this.arguments);
       res.render('index', {test: "Var Test."});
     });
 
